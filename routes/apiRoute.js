@@ -1,10 +1,11 @@
-import { Router } from 'express';
-import { getMovies } from '../controllers/apiController.js';
+const apiRouter = require('express').Router();
 
-const apiRouter = Router();
+const { getMovies, test } = require('../controllers/apiController.js');
 
 apiRouter.route('/movies')
   .get(getMovies);
 
+apiRouter.route('/test')
+  .get(test);
 
-export default apiRouter;
+module.exports = apiRouter;

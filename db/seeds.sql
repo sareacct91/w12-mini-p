@@ -18,7 +18,7 @@ INSERT INTO movies (movie_name)
     ("Fair Play");
 
 
-INSERT INTO reivews (movie_id, review)
+INSERT INTO reviews (movie_id, review)
 	VALUES
     (1, ""),
     (2, ""),

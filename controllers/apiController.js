@@ -2,43 +2,25 @@ let db;
 (async () => db = await require('../db/connectDB'))();
 
 const getMovies = async (req, res) => {
-  const sql = `SELECT * FROM movies;`;
+  const sql = `SELECT * FROM movie;`;
 
-  try {
-    const [data] = await db.query(sql);
+  const [data] = await db.query(sql);
 
-    res.status(200).json({
-      message: 'success',
-      data
-    });
-
-  } catch (error) {
-    console.log(error);
-
-    res.status(500).json({
-      message: 'Try again later'
-    });
-  }
+  res.status(200).json({
+    message: 'success',
+    data
+  });
 };
 
 const getReviews = async (req, res) => {
   const sql = `SELECT * FROM reviews;`;
 
-  try {
-    const [data] = await db.query(sql);
+  const [data] = await db.query(sql);
 
-    res.status(200).json({
-      message: 'Success',
-      data
-    });
-
-  } catch (error) {
-    console.log(error);
-
-    res.status(500).json({
-      message: 'Try again later'
-    });
-  }
+  res.status(200).json({
+    message: 'Success',
+    data
+  });
 };
 
 const addMovie = async (req, res) => {
@@ -56,21 +38,12 @@ const addMovie = async (req, res) => {
 
   const reviewSql = `INSERT INTO reviews(movie_id, review) VALUES (LAST_INSERT_ID(), '')`;
 
-  try {
-    await db.query(movieSql, movieVal);
-    await db.query(reviewSql);
+  await db.query(movieSql, movieVal);
+  await db.query(reviewSql);
 
-    res.status(201).json({
-      message: 'Success'
-    });
-
-  } catch (error) {
-    console.log(error);
-
-    res.status(500).json({
-      message: 'Try again later'
-    });
-  }
+  res.status(201).json({
+    message: 'Success'
+  });
 };
 
 const updateReview = async (req, res) => {
@@ -87,19 +60,11 @@ const updateReview = async (req, res) => {
   const sql = `UPDATE reviews SET review = ? WHERE id = ?`;
   const value = [data, reviewID];
 
-  try {
-    await db.query(sql, value);
+  await db.query(sql, value);
 
-    res.status(200).json({
-      message: 'Review Updated'
-    })
-  } catch (error) {
-    console.log(error);
-
-    res.status(500).json({
-      message: 'Try again later'
-    });
-  }
+  res.status(200).json({
+    message: 'Review Updated'
+  });
 };
 
 const deleteMovie = async (req, res) => {
@@ -108,19 +73,11 @@ const deleteMovie = async (req, res) => {
   const sql = `DELETE FROM movies WHERE id = ?`;
   const value = [movieID];
 
-  try {
-    await db.query(sql, value);
+  await db.query(sql, value);
 
-    res.status(200).json({
-      message: 'Movie Deleted'
-    })
-  } catch (error) {
-    console.log(error);
-
-    res.status(500).json({
-      message: 'Try again later'
-    });
-  }
+  res.status(200).json({
+    message: 'Movie Deleted'
+  });
 };
 
 

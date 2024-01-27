@@ -1,6 +1,7 @@
 let db;
 (async () => db = await require('../db/connectDB'))();
 
+// this doesn't work when use with line 12
 // const db = require('../db/connectDB');
 
 const getMovies = async (req, res) => {

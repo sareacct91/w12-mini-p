@@ -1,4 +1,5 @@
-let db = (async () => await require('../db/connectDB'))();
+let db;
+(async () => db = await require('../db/connectDB'))();
 
 // const db = require('../db/connectDB');
 
